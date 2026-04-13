@@ -22,7 +22,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activites.MainActivity" />
+        <activity android:name=".activites.RegisterActivity" android:exported="false" />
+        <activity android:name=".activites.MainActivity" android:exported="false" />
+        <activity android:name=".activites.CoursesActivity" android:exported="false" />
+        <activity android:name=".activites.CourseDetailActivity" android:exported="false" />
+        <activity android:name=".activites.ProfileActivity" android:exported="false" />
     </application>
 
 </manifest>

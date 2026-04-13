@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Barre de navigation commune aux écrans principaux. Les clics sont branchés dans BaseMoodleActivity. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bottomNav"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:background="@drawable/bg_bottom_nav"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <ImageButton
+        android:id="@+id/navDashboard"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/nav_dashboard"
+        android:padding="18dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_nav_home" />
+
+    <ImageButton
+        android:id="@+id/navAssignments"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/nav_assignments"
+        android:padding="18dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_nav_clipboard" />
+
+    <ImageButton
+        android:id="@+id/navGrid"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/nav_courses"
+        android:padding="18dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_nav_dashboard" />
+
+    <ImageButton
+        android:id="@+id/navCourses"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/nav_courses"
+        android:padding="18dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_nav_book" />
+
+    <ImageButton
+        android:id="@+id/navProfile"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/nav_profile"
+        android:padding="12dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_nav_profile" />
+</LinearLayout>

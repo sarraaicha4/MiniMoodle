@@ -1,0 +1,356 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "Sara",
+      "email": "sara@etsmtl.ca",
+      "password": "111",
+      "nom": "Ouni",
+      "prenom": "Sara",
+      "telephone": "514-123-4567",
+      "photoUrl": "https://fastly.picsum.photos/id/1011/300/300.jpg",
+      "enrolledCourseIds": ["1", "2", "3", "4", "5", "6"],
+      "quizResults": [
+        {
+          "quizId": "1",
+          "score": 4,
+          "total": 5
+        }
+      ],
+      "completedAssignmentIds": []
+    },
+    {
+      "id": "2",
+      "username": "Cedric",
+      "email": "cedd3d@gmail.com",
+      "password": "123456",
+      "nom": "Dénommée",
+      "prenom": "Cédric",
+      "telephone": "819-469-5246",
+      "photoUrl": "https://fastly.picsum.photos/id/42/300/300.jpg",
+      "enrolledCourseIds": ["1", "2", "3"],
+      "quizResults": [],
+      "completedAssignmentIds": []
+    },
+    {
+      "id": "3",
+      "username": "Mylene",
+      "email": "mylene@ens.etsmtl.ca",
+      "password": "password456",
+      "nom": "Desjardins",
+      "prenom": "Mylène",
+      "telephone": "514-987-6543",
+      "photoUrl": "",
+      "enrolledCourseIds": ["2", "4"],
+      "quizResults": [],
+      "completedAssignmentIds": []
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "code": "TCH057",
+      "title": "Applications mobiles et expérience usager",
+      "description": "Ce cours vise à initier l'étudiante ou l'étudiant au développement d'applications mobiles et à la création d'une interface usager claire.",
+      "teacher": "Samah Kansab",
+      "session": "Hiver 2026",
+      "status": "active",
+      "imageUrl": "https://fastly.picsum.photos/id/180/400/250.jpg",
+      "schedule": {
+        "day": "Mardi",
+        "start": "8:30",
+        "end": "12:30",
+        "room": "D-3007"
+      },
+      "ressources": [
+        "Présentation-du-cours.docx",
+        "travail1.pdf",
+        "semaine1.pdf"
+      ],
+      "annonces": [
+        "Le cours de mardi entre 9am et 12pm a été déplacé au local D-3007."
+      ]
+    },
+    {
+      "id": "2",
+      "code": "TCH056",
+      "title": "Programmation Web",
+      "description": "Rudiments de la programmation Web et création de pages interactives.",
+      "teacher": "Hugo Leblanc",
+      "session": "Hiver 2026",
+      "status": "active",
+      "imageUrl": "https://fastly.picsum.photos/id/201/400/250.jpg",
+      "schedule": {
+        "day": "Jeudi",
+        "start": "13:30",
+        "end": "17:00",
+        "room": "B-1510"
+      },
+      "ressources": [
+        "presentation-web.pdf",
+        "laboratoire-css.docx"
+      ],
+      "annonces": [
+        "Quiz HTML/CSS vendredi."
+      ]
+    },
+    {
+      "id": "3",
+      "code": "TCH055",
+      "title": "Programmation orientée-objet",
+      "description": "Conception et programmation orientée objet en Java.",
+      "teacher": "El Hachemi Alikacem",
+      "session": "Hiver 2026",
+      "status": "active",
+      "imageUrl": "https://fastly.picsum.photos/id/48/400/250.jpg",
+      "schedule": {
+        "day": "Lundi",
+        "start": "18:00",
+        "end": "21:30",
+        "room": "A-1600"
+      },
+      "ressources": [
+        "poo-introduction.pdf",
+        "exercices-classes.docx"
+      ],
+      "annonces": [
+        "Le nouveau TP sur les classes est disponible sur Moodle."
+      ]
+    },
+    {
+      "id": "4",
+      "code": "TCH017",
+      "title": "Architecture des ordinateurs",
+      "description": "Rôle des composantes matérielles d'un ordinateur et organisation interne.",
+      "teacher": "Lazhar Khelifi",
+      "session": "Hiver 2026",
+      "status": "active",
+      "imageUrl": "https://fastly.picsum.photos/id/60/400/250.jpg",
+      "schedule": {
+        "day": "Mercredi",
+        "start": "8:30",
+        "end": "12:30",
+        "room": "A-1234"
+      },
+      "ressources": [
+        "architecture-notes.pdf",
+        "assembleur-intro.docx"
+      ],
+      "annonces": [
+        "L'examen intra aura lieu le 15 mars en salle A-1234."
+      ]
+    },
+    {
+      "id": "5",
+      "code": "TCH016",
+      "title": "Système d'exploitation",
+      "description": "Fonctionnement des systèmes, processus, mémoire et services.",
+      "teacher": "Luc Lefebvre",
+      "session": "Hiver 2026",
+      "status": "finished",
+      "imageUrl": "https://fastly.picsum.photos/id/119/400/250.jpg",
+      "schedule": {
+        "day": "Vendredi",
+        "start": "8:30",
+        "end": "12:30",
+        "room": "B-3402"
+      },
+      "ressources": [
+        "processus.pdf",
+        "memoire.pdf"
+      ],
+      "annonces": [
+        "Mise à jour des serveurs terminée."
+      ]
+    },
+    {
+      "id": "6",
+      "code": "TCH013",
+      "title": "Automates programmables",
+      "description": "Programmation GRAFCET et séquences industrielles.",
+      "teacher": "Julie Gagnon",
+      "session": "Hiver 2026",
+      "status": "active",
+      "imageUrl": "https://fastly.picsum.photos/id/250/400/250.jpg",
+      "schedule": {
+        "day": "Mardi",
+        "start": "18:00",
+        "end": "21:30",
+        "room": "L-2100"
+      },
+      "ressources": [
+        "grafcet.pdf",
+        "plc-code.docx"
+      ],
+      "annonces": [
+        "Séance de labo mardi soir."
+      ]
+    }
+  ],
+  "quizzes": [
+    {
+      "id": "1",
+      "courseId": "1",
+      "title": "Mini-test 1",
+      "status": "Corrigé",
+      "questions": [
+        {
+          "id": "1",
+          "question": "Android Studio est un...",
+          "options": ["IDE", "SGBD", "Système d'exploitation"],
+          "correctOption": 0
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "courseId": "1",
+      "title": "Quiz 1",
+      "status": "Corrigé",
+      "questions": [
+        {
+          "id": "2",
+          "question": "RecyclerView sert principalement à afficher...",
+          "options": ["Des listes", "Des fichiers audio", "Des permissions"],
+          "correctOption": 0
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "courseId": "1",
+      "title": "Quiz 2",
+      "status": "Remis",
+      "questions": [
+        {
+          "id": "3",
+          "question": "Une Activity représente...",
+          "options": ["Un écran", "Une base de données", "Un serveur"],
+          "correctOption": 0
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "courseId": "1",
+      "title": "Mini-test 2",
+      "status": "À faire",
+      "questions": [
+        {
+          "id": "4",
+          "question": "JSON Server fournit une API...",
+          "options": ["REST locale", "Bluetooth", "Graphique seulement"],
+          "correctOption": 0
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "courseId": "2",
+      "title": "Quiz HTML",
+      "status": "Non commencé",
+      "questions": [
+        {
+          "id": "5",
+          "question": "HTML signifie...",
+          "options": ["HyperText Markup Language", "High Tool Mobile Language", "Home Text Module"],
+          "correctOption": 0
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "courseId": "3",
+      "title": "Quiz POO",
+      "status": "Non commencé",
+      "questions": [
+        {
+          "id": "6",
+          "question": "Une classe sert à...",
+          "options": ["Définir un modèle d'objet", "Lancer un serveur", "Compresser une image"],
+          "correctOption": 0
+        }
+      ]
+    }
+  ],
+  "assignments": [
+    {
+      "id": "1",
+      "courseId": "1",
+      "title": "TP évalué 1",
+      "description": "Création de la première interface mobile.",
+      "dueDate": "2026-03-23",
+      "instructions": "TP évalué 1 H2026 - v3.pdf",
+      "status": "Remis",
+      "grade": "80%",
+      "comment": "Bon respect des exigences.",
+      "totalPoints": 20,
+      "type": "file"
+    },
+    {
+      "id": "2",
+      "courseId": "1",
+      "title": "TP évalué 2",
+      "description": "Navigation entre activités et lecture du JSON.",
+      "dueDate": "2026-04-11",
+      "instructions": "TP évalué 2 H2026 - v4.pdf",
+      "status": "En retard",
+      "grade": null,
+      "comment": null,
+      "totalPoints": 20,
+      "type": "file"
+    },
+    {
+      "id": "3",
+      "courseId": "1",
+      "title": "Projet de session",
+      "description": "Mini Moodle complet avec compte, cours, travaux et quiz.",
+      "dueDate": "2026-04-19",
+      "instructions": "Projet de session H2026 - v3.pdf",
+      "status": "À faire",
+      "grade": null,
+      "comment": null,
+      "totalPoints": 40,
+      "type": "file"
+    },
+    {
+      "id": "4",
+      "courseId": "2",
+      "title": "Laboratoire CSS",
+      "description": "Construire une page web responsive.",
+      "dueDate": "2026-04-07",
+      "instructions": "Style et grilles CSS",
+      "status": "À faire",
+      "grade": null,
+      "comment": null,
+      "totalPoints": 20,
+      "type": "text"
+    },
+    {
+      "id": "5",
+      "courseId": "3",
+      "title": "Devoir POO",
+      "description": "Modéliser des classes Java.",
+      "dueDate": "2026-04-12",
+      "instructions": "Classes, objets et héritage",
+      "status": "Remis",
+      "grade": "90%",
+      "comment": "Très clair.",
+      "totalPoints": 20,
+      "type": "text"
+    },
+    {
+      "id": "6",
+      "courseId": "4",
+      "title": "Devoir Assembleur",
+      "description": "Exercices de logique machine.",
+      "dueDate": "2026-04-05",
+      "instructions": "Boucles et registres",
+      "status": "Corrigé",
+      "grade": "85%",
+      "comment": "Bien.",
+      "totalPoints": 20,
+      "type": "file"
+    }
+  ]
+}

@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Mini Moodle</string>
+    <string name="nav_dashboard">Tableau de bord</string>
+    <string name="nav_assignments">Travaux</string>
+    <string name="nav_courses">Cours</string>
+    <string name="nav_profile">Compte</string>
+    <string name="open_course">Ouvrir le cours</string>
+    <string name="profile_photo">Photo de profil</string>
+    <string name="search_course">Rechercher un cours</string>
 </resources>
