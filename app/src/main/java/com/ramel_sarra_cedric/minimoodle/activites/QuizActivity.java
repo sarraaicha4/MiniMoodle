@@ -147,6 +147,7 @@ public class QuizActivity extends BaseMoodleActivity {
         card.setPadding(dp(16), dp(14), dp(16), dp(14));
         card.setBackgroundResource(R.drawable.bg_course_card_green);
 
+        // Ligne 1 : nom du quiz + score si complété
         LinearLayout topRow = new LinearLayout(this);
         topRow.setOrientation(LinearLayout.HORIZONTAL);
         topRow.setGravity(Gravity.CENTER_VERTICAL);
@@ -160,24 +161,34 @@ public class QuizActivity extends BaseMoodleActivity {
 
         if (completed) {
             TextView scoreText = new TextView(this);
-            scoreText.setText(score.label() + "/100");
+            scoreText.setText(score.score + "/" + score.total);
             scoreText.setTextColor(getColor(R.color.white));
             scoreText.setTextSize(14);
             scoreText.setTypeface(null, Typeface.BOLD);
-            scoreText.setGravity(Gravity.END);
             topRow.addView(scoreText, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         }
 
         card.addView(topRow, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
-        TextView courseText = new TextView(this);
-        courseText.setText("- " + courseCode);
-        courseText.setTextColor(getColor(R.color.white));
-        courseText.setTextSize(12);
-        card.addView(courseText);
+        // Ligne 2 : code du cours • nb questions • durée
+        LinearLayout infoRow = new LinearLayout(this);
+        infoRow.setOrientation(LinearLayout.HORIZONTAL);
 
+        String infoStr = courseCode + " • " + quiz.questionCount() + " questions";
+        if (quiz.durationMinutes > 0) infoStr += " • " + quiz.durationMinutes + " min";
+
+        TextView infoText = new TextView(this);
+        infoText.setText(infoStr);
+        infoText.setTextColor(getColor(R.color.white));
+        infoText.setTextSize(12);
+        infoRow.addView(infoText);
+
+        LinearLayout.LayoutParams infoParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        card.addView(infoRow, infoParams);
+
+        // Statut
         TextView statusText = new TextView(this);
-        statusText.setText(completed ? "Terminé" : "Non commencé");
+        statusText.setText(completed ? "Terminé" : "À faire");
         statusText.setTextColor(getColor(R.color.white));
         statusText.setTextSize(12);
         statusText.setGravity(Gravity.CENTER_HORIZONTAL);
@@ -185,19 +196,22 @@ public class QuizActivity extends BaseMoodleActivity {
         statusParams.topMargin = dp(8);
         card.addView(statusText, statusParams);
 
-        Button actionBtn = new Button(this);
-        actionBtn.setText(completed ? "Consulter le quiz" : "Commencer le quiz");
-        actionBtn.setTextColor(getColor(R.color.white));
-        actionBtn.setTextSize(13);
-        actionBtn.setTypeface(null, Typeface.BOLD);
-        actionBtn.setAllCaps(false);
-        actionBtn.setBackgroundResource(R.drawable.bg_button_orange);
-        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        btnParams.gravity = Gravity.CENTER_HORIZONTAL;
-        btnParams.topMargin = dp(8);
-        card.addView(actionBtn, btnParams);
-
-        actionBtn.setOnClickListener(v -> showQuizDialog(quiz));
+        // Bouton seulement si pas complété
+        if (!completed) {
+            Button actionBtn = new Button(this);
+            actionBtn.setText("Commencer le quiz");
+            actionBtn.setTextColor(getColor(R.color.white));
+            actionBtn.setTextSize(13);
+            actionBtn.setTypeface(null, Typeface.BOLD);
+            actionBtn.setAllCaps(false);
+            actionBtn.setBackgroundResource(R.drawable.bg_button_orange);
+            actionBtn.setIncludeFontPadding(false);
+            LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, dp(30));
+            btnParams.gravity = Gravity.CENTER_HORIZONTAL;
+            btnParams.topMargin = dp(2);
+            card.addView(actionBtn, btnParams);
+            actionBtn.setOnClickListener(v -> showQuizDialog(quiz));
+        }
 
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         cardParams.setMargins(0, 0, 0, dp(16));
