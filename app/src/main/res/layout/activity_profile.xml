@@ -3,42 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_gray">
-
-    <TextView
-        android:id="@+id/profilePageTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="22dp"
-        android:text="Compte"
-        android:textColor="@color/title_blue"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@color/header_green">
 
     <ScrollView
         android:id="@+id/profileScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="28dp"
-        android:background="@drawable/bg_white_card"
+        android:clipChildren="false"
+        android:clipToPadding="false"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/profileBottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profilePageTitle">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="194dp"
                 android:background="@drawable/bg_profile_header"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
@@ -50,35 +38,46 @@
                     android:paddingStart="16dp"
                     android:text="Mon compte"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/profileImage"
-                    android:layout_width="92dp"
-                    android:layout_height="92dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_profile_circle"
+                    android:clipToOutline="true"
                     android:contentDescription="@string/profile_photo"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_profile_placeholder" />
 
                 <TextView
-                    android:id="@+id/changePhotoHint"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/profileFullName"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Changer votre photo de profil"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:textColor="@color/white"
-                    android:textSize="11sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
+
             </LinearLayout>
 
-            <!-- Formulaire modifiable demandé dans la section Profil utilisateur du PDF. -->
+            <View
+                android:layout_width="700dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="-70dp"
+                android:background="@drawable/bg_dome_white" />
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
                 android:orientation="vertical"
                 android:paddingStart="26dp"
-                android:paddingTop="16dp"
+                android:paddingTop="10dp"
                 android:paddingEnd="26dp"
                 android:paddingBottom="24dp">
 
@@ -97,8 +96,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="88dp"
+                        android:layout_width="120dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:text="Prénom"
                         android:textColor="@color/text_dark"
@@ -121,8 +121,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="88dp"
+                        android:layout_width="120dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:text="Nom"
                         android:textColor="@color/text_dark"
@@ -145,8 +146,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="88dp"
+                        android:layout_width="120dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:text="Courriel"
                         android:textColor="@color/text_dark"
@@ -170,8 +172,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="88dp"
+                        android:layout_width="120dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:text="# de téléphone"
                         android:textColor="@color/text_dark"
@@ -195,8 +198,9 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="88dp"
+                        android:layout_width="120dp"
                         android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
                         android:gravity="center_vertical"
                         android:text="Mot de passe"
                         android:textColor="@color/text_dark"
@@ -204,6 +208,32 @@
 
                     <EditText
                         android:id="@+id/profilePasswordInput"
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_input"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="Photo de profil (URL)"
+                        android:textColor="@color/text_dark"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/profilePhotoInput"
                         android:layout_width="0dp"
                         android:layout_height="36dp"
                         android:layout_weight="1"
@@ -213,29 +243,19 @@
                         android:textSize="12sp" />
                 </LinearLayout>
 
-                <EditText
-                    android:id="@+id/profilePhotoInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="9dp"
-                    android:background="@drawable/bg_input"
-                    android:hint="URL de la photo"
-                    android:inputType="textUri"
-                    android:singleLine="true"
-                    android:textSize="12sp" />
-
                 <Button
                     android:id="@+id/saveProfileBtn"
-                    android:layout_width="104dp"
-                    android:layout_height="40dp"
+                    android:layout_width="120dp"
+                    android:layout_height="30dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="14dp"
                     android:background="@drawable/bg_button_orange"
                     android:text="Enregistrer"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:includeFontPadding="false" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

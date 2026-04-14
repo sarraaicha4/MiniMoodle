@@ -2,6 +2,9 @@ package com.ramel_sarra_cedric.minimoodle.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.UnderlineSpan;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +38,10 @@ public class RegisterActivity extends AppCompatActivity {
         photoInput = findViewById(R.id.registerPhotoInput);
         Button registerBtn = findViewById(R.id.registerBtn);
         TextView goLoginText = findViewById(R.id.goLoginText);
+
+        SpannableString underlined = new SpannableString(goLoginText.getText());
+        underlined.setSpan(new UnderlineSpan(), 0, underlined.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        goLoginText.setText(underlined);
 
         registerBtn.setOnClickListener(view -> registerUser());
         goLoginText.setOnClickListener(view -> finish());

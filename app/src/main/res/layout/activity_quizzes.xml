@@ -1,70 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/screen_gray">
+    android:background="@color/header_green"
+    android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/quizzesHeader"
-        android:layout_width="0dp"
-        android:layout_height="126dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/header_green"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingStart="28dp"
-        android:paddingEnd="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingTop="28dp"
+        android:paddingBottom="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Quiz"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="48sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/quizzesSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="-5dp"
             android:gravity="center"
-            android:text="Vos mini-tests et quiz"
+            android:paddingStart="60dp"
+            android:paddingEnd="60dp"
+            android:text="Sélectionnez un quiz pour répondre aux questions ou consulter vos résultats."
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
+
+    <View
+        android:layout_width="700dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="-70dp"
+        android:background="@drawable/bg_dome_white" />
 
     <ScrollView
         android:id="@+id/quizzesScroll"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/quizzesBottomNav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/quizzesHeader">
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:fillViewport="true">
 
-        <!-- Rempli en Java depuis le JSON: une carte par quiz de l'étudiant. -->
         <LinearLayout
             android:id="@+id/quizzesContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="24dp"
+            android:paddingStart="20dp"
             android:paddingTop="18dp"
-            android:paddingEnd="24dp"
-            android:paddingBottom="18dp" />
+            android:paddingEnd="20dp"
+            android:paddingBottom="18dp"
+            tools:ignore="all">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_course_card_green"
+                android:orientation="vertical"
+                android:padding="16dp"
+                tools:ignore="all">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nom du quiz"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Score"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Code du cours • "
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre de questions • "
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Temps"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center"
+                    android:text="Non commencé"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/bg_button_orange"
+                    android:text="Commencer le quiz"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:includeFontPadding="false" />
+            </LinearLayout>
+
+        </LinearLayout>
     </ScrollView>
 
     <include
         android:id="@+id/quizzesBottomNav"
         layout="@layout/layout_bottom_nav"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_width="match_parent"
+        android:layout_height="64dp" />
+
+</LinearLayout>

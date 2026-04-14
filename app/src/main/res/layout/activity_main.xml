@@ -8,31 +8,19 @@
     android:background="@color/screen_gray"
     tools:context=".activites.MainActivity">
 
-    <TextView
-        android:id="@+id/dashboardTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="26dp"
-        android:text="Dashboard"
-        android:textColor="@color/title_blue"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:id="@+id/dashboardScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/bg_white_card"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/dashboardBottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dashboardTitle">
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- Le contenu est rempli en Java depuis le JSON: cours inscrits, travaux, quiz et annonces. -->
         <LinearLayout

@@ -1,6 +1,5 @@
 package com.ramel_sarra_cedric.minimoodle.activites;
 
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -50,7 +49,7 @@ public class QuizActivity extends BaseMoodleActivity {
         }
 
         String label() {
-            return score + "/" + total + " (" + percent() + "%)";
+            return score + "/" + total;
         }
     }
 
@@ -61,7 +60,6 @@ public class QuizActivity extends BaseMoodleActivity {
         readSessionFromIntent();
         setupBottomNavigation("quiz");
         localDb = new LocalDatabaseHelper(this);
-
         quizzesContainer = findViewById(R.id.quizzesContainer);
         loadQuizzes();
     }
@@ -73,9 +71,7 @@ public class QuizActivity extends BaseMoodleActivity {
                 JSONArray coursesJson = MoodleDao.getArray(this, "courses");
                 JSONArray quizzesJson = MoodleDao.getArray(this, "quizzes");
                 JSONObject userJson = MoodleDao.findById(usersJson, userId);
-                if (userJson == null) {
-                    throw new IllegalStateException("Utilisateur introuvable");
-                }
+                if (userJson == null) throw new IllegalStateException("Utilisateur introuvable");
                 User user = User.fromJson(userJson);
 
                 courses.clear();
@@ -111,10 +107,7 @@ public class QuizActivity extends BaseMoodleActivity {
 
     private void loadServerQuizScores(JSONObject userJson) {
         JSONArray results = userJson.optJSONArray("quizResults");
-        if (results == null) {
-            return;
-        }
-
+        if (results == null) return;
         for (int i = 0; i < results.length(); i++) {
             JSONObject result = results.optJSONObject(i);
             if (result != null) {
@@ -128,15 +121,14 @@ public class QuizActivity extends BaseMoodleActivity {
 
     private void renderQuizzes() {
         quizzesContainer.removeAllViews();
-
         if (quizzes.isEmpty()) {
-            quizzesContainer.addView(emptyText("Aucun quiz pour vos cours."));
+            TextView empty = new TextView(this);
+            empty.setText("Aucun quiz pour vos cours.");
+            empty.setTextColor(getColor(R.color.text_dark));
+            empty.setTextSize(14);
+            quizzesContainer.addView(empty);
             return;
         }
-
-        TextView helpText = emptyText("Sélectionne un quiz pour répondre aux questions et enregistrer ton résultat.");
-        helpText.setPadding(0, 0, 0, dp(12));
-        quizzesContainer.addView(helpText);
 
         for (Quiz quiz : quizzes) {
             View card = quizCard(quiz);
@@ -148,69 +140,76 @@ public class QuizActivity extends BaseMoodleActivity {
     private View quizCard(Quiz quiz) {
         QuizScore score = quizScores.get(quiz.id);
         boolean completed = score != null;
+        String courseCode = courseCodeFor(quiz.courseId);
 
         LinearLayout card = new LinearLayout(this);
-        card.setOrientation(LinearLayout.HORIZONTAL);
-        card.setGravity(Gravity.CENTER_VERTICAL);
-        card.setPadding(dp(14), dp(10), dp(14), dp(10));
-        card.setBackgroundResource(completed ? R.drawable.bg_course_card_green : R.drawable.bg_card_orange);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setPadding(dp(16), dp(14), dp(16), dp(14));
+        card.setBackgroundResource(R.drawable.bg_course_card_green);
 
-        TextView leftText = new TextView(this);
-        leftText.setText(quiz.title + "\n"
-                + courseCodeFor(quiz.courseId) + " • " + quiz.questionCount() + " questions"
-                + durationLabel(quiz));
-        leftText.setTextColor(getColor(R.color.white));
-        leftText.setTextSize(12);
-        leftText.setLineSpacing(2, 1);
+        LinearLayout topRow = new LinearLayout(this);
+        topRow.setOrientation(LinearLayout.HORIZONTAL);
+        topRow.setGravity(Gravity.CENTER_VERTICAL);
 
-        TextView rightText = new TextView(this);
-        rightText.setText(completed ? "Terminé\n" + score.label() : statusLabel(quiz) + "\nOuvrir");
-        rightText.setTextColor(getColor(R.color.white));
-        rightText.setTextSize(11);
-        rightText.setGravity(Gravity.END | Gravity.CENTER_VERTICAL);
-        rightText.setTypeface(null, Typeface.BOLD);
+        TextView titleText = new TextView(this);
+        titleText.setText(quiz.title);
+        titleText.setTextColor(getColor(R.color.white));
+        titleText.setTextSize(15);
+        titleText.setTypeface(null, Typeface.BOLD);
+        topRow.addView(titleText, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
 
-        card.addView(leftText, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
-        card.addView(rightText, new LinearLayout.LayoutParams(dp(96), LinearLayout.LayoutParams.WRAP_CONTENT));
+        if (completed) {
+            TextView scoreText = new TextView(this);
+            scoreText.setText(score.label() + "/100");
+            scoreText.setTextColor(getColor(R.color.white));
+            scoreText.setTextSize(14);
+            scoreText.setTypeface(null, Typeface.BOLD);
+            scoreText.setGravity(Gravity.END);
+            topRow.addView(scoreText, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        }
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        );
-        params.setMargins(0, 0, 0, dp(12));
-        card.setLayoutParams(params);
+        card.addView(topRow, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        TextView courseText = new TextView(this);
+        courseText.setText("- " + courseCode);
+        courseText.setTextColor(getColor(R.color.white));
+        courseText.setTextSize(12);
+        card.addView(courseText);
+
+        TextView statusText = new TextView(this);
+        statusText.setText(completed ? "Terminé" : "Non commencé");
+        statusText.setTextColor(getColor(R.color.white));
+        statusText.setTextSize(12);
+        statusText.setGravity(Gravity.CENTER_HORIZONTAL);
+        LinearLayout.LayoutParams statusParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        statusParams.topMargin = dp(8);
+        card.addView(statusText, statusParams);
+
+        Button actionBtn = new Button(this);
+        actionBtn.setText(completed ? "Consulter le quiz" : "Commencer le quiz");
+        actionBtn.setTextColor(getColor(R.color.white));
+        actionBtn.setTextSize(13);
+        actionBtn.setTypeface(null, Typeface.BOLD);
+        actionBtn.setAllCaps(false);
+        actionBtn.setBackgroundResource(R.drawable.bg_button_orange);
+        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        btnParams.gravity = Gravity.CENTER_HORIZONTAL;
+        btnParams.topMargin = dp(8);
+        card.addView(actionBtn, btnParams);
+
+        actionBtn.setOnClickListener(v -> showQuizDialog(quiz));
+
+        LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        cardParams.setMargins(0, 0, 0, dp(16));
+        card.setLayoutParams(cardParams);
         return card;
-    }
-
-    private TextView emptyText(String message) {
-        TextView textView = new TextView(this);
-        textView.setText(message);
-        textView.setTextColor(getColor(R.color.text_dark));
-        textView.setTextSize(14);
-        return textView;
     }
 
     private String courseCodeFor(String courseId) {
         for (Course course : courses) {
-            if (course.id.equals(courseId)) {
-                return course.code;
-            }
+            if (course.id.equals(courseId)) return course.code;
         }
         return "Cours";
-    }
-
-    private String durationLabel(Quiz quiz) {
-        if (quiz.durationMinutes <= 0) {
-            return "";
-        }
-        return " • " + quiz.durationMinutes + " min";
-    }
-
-    private String statusLabel(Quiz quiz) {
-        if ("À faire".equalsIgnoreCase(quiz.status)) {
-            return "Non commencé";
-        }
-        return quiz.status;
     }
 
     private void showQuizDialog(Quiz quiz) {
@@ -227,7 +226,6 @@ public class QuizActivity extends BaseMoodleActivity {
 
         TextView instructions = new TextView(this);
         instructions.setText("Cours: " + courseCodeFor(quiz.courseId)
-                + "\nDurée: " + (quiz.durationMinutes <= 0 ? "non limitée" : quiz.durationMinutes + " minutes")
                 + "\nQuestions: " + quiz.questionCount()
                 + "\n\nRéponds à toutes les questions, puis valide pour voir ton score.");
         instructions.setTextColor(getColor(R.color.text_dark));
@@ -238,9 +236,7 @@ public class QuizActivity extends BaseMoodleActivity {
         for (int i = 0; i < quiz.questions.length(); i++) {
             JSONObject question = quiz.questions.optJSONObject(i);
             JSONArray options = question == null ? null : question.optJSONArray("options");
-            if (question == null || options == null || options.length() == 0) {
-                continue;
-            }
+            if (question == null || options == null || options.length() == 0) continue;
 
             visibleQuestions.add(question);
             TextView questionTitle = new TextView(this);
@@ -255,14 +251,14 @@ public class QuizActivity extends BaseMoodleActivity {
             group.setOrientation(RadioGroup.VERTICAL);
             group.setPadding(0, dp(4), 0, dp(4));
 
-            for (int optionIndex = 0; optionIndex < options.length(); optionIndex++) {
-                RadioButton optionButton = new RadioButton(this);
-                optionButton.setId(View.generateViewId());
-                optionButton.setTag(optionIndex);
-                optionButton.setText(options.optString(optionIndex));
-                optionButton.setTextColor(getColor(R.color.text_dark));
-                optionButton.setTextSize(13);
-                group.addView(optionButton);
+            for (int j = 0; j < options.length(); j++) {
+                RadioButton btn = new RadioButton(this);
+                btn.setId(View.generateViewId());
+                btn.setTag(j);
+                btn.setText(options.optString(j));
+                btn.setTextColor(getColor(R.color.text_dark));
+                btn.setTextSize(13);
+                group.addView(btn);
             }
 
             answerGroups.add(group);
@@ -285,18 +281,13 @@ public class QuizActivity extends BaseMoodleActivity {
                 .create();
 
         quizDialog.setOnShowListener(dialog -> {
-            Button validateButton = quizDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+            Button validateButton = quizDialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE);
             validateButton.setOnClickListener(view -> submitQuiz(quiz, visibleQuestions, answerGroups, quizDialog));
         });
         quizDialog.show();
     }
 
-    private void submitQuiz(
-            Quiz quiz,
-            List<JSONObject> questions,
-            List<RadioGroup> answerGroups,
-            AlertDialog quizDialog
-    ) {
+    private void submitQuiz(Quiz quiz, List<JSONObject> questions, List<RadioGroup> answerGroups, AlertDialog quizDialog) {
         for (RadioGroup group : answerGroups) {
             if (group.getCheckedRadioButtonId() == -1) {
                 showMessage("Réponds à toutes les questions avant de valider.");
@@ -316,20 +307,15 @@ public class QuizActivity extends BaseMoodleActivity {
             int correctIndex = question.optInt("correctOption", -1);
             boolean correct = selectedIndex == correctIndex;
 
-            if (correct) {
-                score++;
-            }
+            if (correct) score++;
 
-            corrections.append(i + 1)
-                    .append(". ")
+            corrections.append(i + 1).append(". ")
                     .append(correct ? "Correct" : "Incorrect")
                     .append(" - réponse: ")
-                    .append(options.optString(correctIndex, "non définie"));
+                    .append(options != null ? options.optString(correctIndex, "?") : "?");
 
             String explanation = question.optString("explanation");
-            if (!explanation.isEmpty()) {
-                corrections.append("\n   ").append(explanation);
-            }
+            if (!explanation.isEmpty()) corrections.append("\n   ").append(explanation);
             corrections.append("\n\n");
         }
 
@@ -338,14 +324,11 @@ public class QuizActivity extends BaseMoodleActivity {
         quiz.status = "Terminé";
         quizDialog.dismiss();
         renderQuizzes();
-        showResultDialog(quiz, score, questions.size(), corrections.toString());
-    }
 
-    private void showResultDialog(Quiz quiz, int score, int total, String corrections) {
-        int percent = total == 0 ? 0 : Math.round((score * 100f) / total);
+        int percent = questions.size() == 0 ? 0 : Math.round((score * 100f) / questions.size());
         new AlertDialog.Builder(this)
                 .setTitle("Résultat - " + quiz.title)
-                .setMessage("Score: " + score + "/" + total + " (" + percent + "%)\n\n" + corrections)
+                .setMessage("Score: " + score + "/" + questions.size() + " (" + percent + "%)\n\n" + corrections)
                 .setPositiveButton("OK", null)
                 .show();
     }

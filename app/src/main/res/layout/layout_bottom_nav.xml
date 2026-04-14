@@ -10,58 +10,112 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp">
 
-    <ImageButton
-        android:id="@+id/navDashboard"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/nav_dashboard"
-        android:padding="18dp"
-        android:scaleType="center"
-        android:src="@drawable/ic_nav_home" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/navAssignments"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/nav_quizzes"
-        android:padding="18dp"
-        android:scaleType="center"
-        android:src="@drawable/ic_nav_quiz" />
+        <ImageButton
+            android:id="@+id/navDashboard"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_dashboard"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_nav_dashboard" />
 
-    <ImageButton
-        android:id="@+id/navGrid"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/nav_assignments"
-        android:padding="18dp"
-        android:scaleType="center"
-        android:src="@drawable/ic_nav_clipboard" />
+        <View
+            android:id="@+id/navDashboardDot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/bg_nav_dot"
+            android:visibility="invisible" />
+    </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/navCourses"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/nav_courses"
-        android:padding="18dp"
-        android:scaleType="center"
-        android:src="@drawable/ic_nav_book" />
+        android:gravity="center"
+        android:orientation="vertical">
 
-    <ImageButton
-        android:id="@+id/navProfile"
+        <ImageButton
+            android:id="@+id/navAssignments"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_quizzes"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_nav_quiz" />
+
+        <View
+            android:id="@+id/navAssignmentsDot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/bg_nav_dot"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/nav_profile"
-        android:padding="12dp"
-        android:scaleType="center"
-        android:src="@drawable/ic_nav_profile" />
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/navCourses"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_courses"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_nav_book" />
+
+        <View
+            android:id="@+id/navCoursesDot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/bg_nav_dot"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/navProfile"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/nav_profile"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_nav_profile" />
+
+        <View
+            android:id="@+id/navProfileDot"
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/bg_nav_dot"
+            android:visibility="invisible" />
+    </LinearLayout>
+
 </LinearLayout>

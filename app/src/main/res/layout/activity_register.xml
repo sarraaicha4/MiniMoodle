@@ -5,46 +5,28 @@
     android:layout_height="match_parent"
     android:background="@color/screen_gray">
 
-    <TextView
-        android:id="@+id/registerPageTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="28dp"
-        android:text="Création de compte"
-        android:textColor="@color/text_soft"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="28dp"
         android:background="@drawable/bg_auth_card"
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/registerPageTitle">
+        app:layout_constraintTop_toTopOf="parent" >
 
-        <!-- Les champs correspondent aux informations minimales demandées dans le PDF. -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
-            android:paddingStart="34dp"
-            android:paddingTop="44dp"
-            android:paddingEnd="34dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
             android:paddingBottom="26dp">
 
             <ImageView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_moodle_logo" />
 
@@ -54,7 +36,7 @@
                 android:layout_marginBottom="18dp"
                 android:text="Inscrivez-vous à Mini Moodle"
                 android:textColor="@color/text_dark"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -72,6 +54,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
                         android:text="Prénom"
                         android:textColor="@color/text_soft"
                         android:textSize="10sp" />
@@ -81,7 +64,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="36dp"
                         android:background="@drawable/bg_input"
-                        android:hint="Cédric"
+                        android:hint="Jean"
                         android:singleLine="true"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -89,12 +72,14 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
                         android:text="Nom"
                         android:textColor="@color/text_soft"
                         android:textSize="10sp" />
@@ -104,7 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="36dp"
                         android:background="@drawable/bg_input"
-                        android:hint="Dénommée"
+                        android:hint="Dupont"
                         android:singleLine="true"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -113,6 +98,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="9dp"
                 android:text="Courriel"
                 android:textColor="@color/text_soft"
@@ -123,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:background="@drawable/bg_input"
-                android:hint="cedd3d@gmail.com"
+                android:hint="utilisateur@etsmtl.ca"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
                 android:textSize="12sp" />
@@ -131,6 +117,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="9dp"
                 android:text="Mot de passe"
                 android:textColor="@color/text_soft"
@@ -141,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:background="@drawable/bg_input"
-                android:hint="••••••••"
+                android:hint="Entrez votre mot de passe"
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textSize="12sp" />
@@ -149,6 +136,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="9dp"
                 android:text="# de téléphone"
                 android:textColor="@color/text_soft"
@@ -159,7 +147,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:background="@drawable/bg_input"
-                android:hint="819-469-5246"
+                android:hint="514-555-0100"
                 android:inputType="phone"
                 android:singleLine="true"
                 android:textSize="12sp" />
@@ -167,6 +155,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="9dp"
                 android:text="Photo de profil (URL)"
                 android:textColor="@color/text_soft"
@@ -177,37 +166,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="36dp"
                 android:background="@drawable/bg_input"
-                android:hint="https://fastly.picsum.photos/id/..."
+                android:hint="https://example.com/photo.jpg"
                 android:inputType="textUri"
                 android:singleLine="true"
                 android:textSize="12sp" />
 
             <Button
                 android:id="@+id/registerBtn"
-                android:layout_width="104dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="18dp"
                 android:background="@drawable/bg_button_orange"
                 android:text="S'inscrire"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:includeFontPadding="false"/>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="2dp"
                 android:layout_marginTop="24dp"
                 android:background="@color/divider_soft" />
 
-            <TextView
-                android:id="@+id/goLoginText"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="38dp"
                 android:gravity="center"
-                android:text="Vous avez déjà un compte? Connectez-vous"
-                android:textColor="@color/text_soft"
-                android:textSize="10sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vous avez déjà un compte? "
+                    android:textColor="@color/text_soft"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/goLoginText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Connectez-vous"
+                    android:textColor="@color/button_orange"
+                    android:textSize="10sp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

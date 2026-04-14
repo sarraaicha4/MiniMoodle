@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ramel_sarra_cedric.minimoodle.R;
 import com.ramel_sarra_cedric.minimoodle.dao.ImageLoader;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 
 public class ProfileActivity extends BaseMoodleActivity {
     private ImageView profileImage;
+    private TextView fullNameText;
     private EditText firstNameInput;
     private EditText lastNameInput;
     private EditText emailInput;
@@ -30,6 +32,7 @@ public class ProfileActivity extends BaseMoodleActivity {
         setupBottomNavigation("profile");
 
         profileImage = findViewById(R.id.profileImage);
+        fullNameText = findViewById(R.id.profileFullName);
         firstNameInput = findViewById(R.id.profileFirstNameInput);
         lastNameInput = findViewById(R.id.profileLastNameInput);
         emailInput = findViewById(R.id.profileEmailInput);
@@ -38,7 +41,7 @@ public class ProfileActivity extends BaseMoodleActivity {
         photoInput = findViewById(R.id.profilePhotoInput);
         Button saveBtn = findViewById(R.id.saveProfileBtn);
 
-        saveBtn.setOnClickListener(view -> saveProfile());
+saveBtn.setOnClickListener(view -> saveProfile());
         loadProfile();
     }
 
@@ -56,6 +59,7 @@ public class ProfileActivity extends BaseMoodleActivity {
     }
 
     private void showUser(User user) {
+        fullNameText.setText(user.prenom + " " + user.nom);
         firstNameInput.setText(user.prenom);
         lastNameInput.setText(user.nom);
         emailInput.setText(user.email);
