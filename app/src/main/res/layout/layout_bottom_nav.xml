@@ -27,10 +27,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/nav_assignments"
+        android:contentDescription="@string/nav_quizzes"
         android:padding="18dp"
         android:scaleType="center"
-        android:src="@drawable/ic_nav_clipboard" />
+        android:src="@drawable/ic_nav_quiz" />
 
     <ImageButton
         android:id="@+id/navGrid"
@@ -38,10 +38,10 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/nav_courses"
+        android:contentDescription="@string/nav_assignments"
         android:padding="18dp"
         android:scaleType="center"
-        android:src="@drawable/ic_nav_dashboard" />
+        android:src="@drawable/ic_nav_clipboard" />
 
     <ImageButton
         android:id="@+id/navCourses"

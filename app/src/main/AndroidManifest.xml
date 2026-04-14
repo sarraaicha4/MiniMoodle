@@ -24,6 +24,8 @@
 
         <activity android:name=".activites.RegisterActivity" android:exported="false" />
         <activity android:name=".activites.MainActivity" android:exported="false" />
+        <activity android:name=".activites.QuizActivity" android:exported="false" />
+        <activity android:name=".activites.AssignmentsActivity" android:exported="false" />
         <activity android:name=".activites.CoursesActivity" android:exported="false" />
         <activity android:name=".activites.CourseDetailActivity" android:exported="false" />
         <activity android:name=".activites.ProfileActivity" android:exported="false" />

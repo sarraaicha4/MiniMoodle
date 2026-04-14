@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.minimoodle"
+    namespace = "com.ramel_sarra_cedric.minimoodle"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.minimoodle"
+        applicationId = "com.ramel_sarra_cedric.minimoodle"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

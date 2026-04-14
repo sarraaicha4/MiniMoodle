@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Mini Moodle</string>
     <string name="nav_dashboard">Tableau de bord</string>
+    <string name="nav_quizzes">Quiz</string>
     <string name="nav_assignments">Travaux</string>
     <string name="nav_courses">Cours</string>
     <string name="nav_profile">Compte</string>
