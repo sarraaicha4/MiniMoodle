@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 
 public class MoodleDao {
     private static final String BASE_URL = "http://10.0.2.2:3000";
@@ -20,22 +21,22 @@ public class MoodleDao {
     public static JSONArray getArray(Context context, String resourceName) throws Exception {
         try {
             String response = request("GET", resourceName, null);
-            return new JSONArray(response);
+            return sanitizeArray(new JSONArray(response));
         } catch (Exception serverError) {
-            JSONObject localDatabase = readLocalDatabase(context);
+            JSONObject localDatabase = sanitizeObject(readLocalDatabase(context));
             if (localDatabase.has(resourceName)) {
-                return localDatabase.getJSONArray(resourceName);
+                return sanitizeArray(localDatabase.getJSONArray(resourceName));
             }
             throw serverError;
         }
     }
 
     public static JSONObject postObject(String resourceName, JSONObject body) throws Exception {
-        return new JSONObject(request("POST", resourceName, body));
+        return sanitizeObject(new JSONObject(request("POST", resourceName, body)));
     }
 
     public static JSONObject patchObject(String resourcePath, JSONObject body) throws Exception {
-        return new JSONObject(request("PATCH", resourcePath, body));
+        return sanitizeObject(new JSONObject(request("PATCH", resourcePath, body)));
     }
 
     public static JSONObject findById(JSONArray array, String id) {
@@ -99,5 +100,64 @@ public class MoodleDao {
         }
 
         return response.toString();
+    }
+
+    private static JSONObject sanitizeObject(JSONObject object) throws Exception {
+        Iterator<String> keys = object.keys();
+        while (keys.hasNext()) {
+            String key = keys.next();
+            object.put(key, sanitizeValue(object.opt(key)));
+        }
+        return object;
+    }
+
+    private static JSONArray sanitizeArray(JSONArray array) throws Exception {
+        for (int i = 0; i < array.length(); i++) {
+            array.put(i, sanitizeValue(array.opt(i)));
+        }
+        return array;
+    }
+
+    private static Object sanitizeValue(Object value) throws Exception {
+        if (value == null || value == JSONObject.NULL) {
+            return value;
+        }
+        if (value instanceof JSONObject) {
+            return sanitizeObject((JSONObject) value);
+        }
+        if (value instanceof JSONArray) {
+            return sanitizeArray((JSONArray) value);
+        }
+        if (value instanceof String) {
+            return repairMojibake((String) value);
+        }
+        return value;
+    }
+
+    private static String repairMojibake(String value) {
+        if (!looksMisencoded(value)) {
+            return value;
+        }
+
+        String repaired = new String(value.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
+        return suspiciousCharCount(repaired) < suspiciousCharCount(value) ? repaired : value;
+    }
+
+    private static boolean looksMisencoded(String value) {
+        return value.contains("Ã")
+                || value.contains("Â")
+                || value.contains("â")
+                || value.contains("�");
+    }
+
+    private static int suspiciousCharCount(String value) {
+        int count = 0;
+        for (int i = 0; i < value.length(); i++) {
+            char character = value.charAt(i);
+            if (character == 'Ã' || character == 'Â' || character == 'â' || character == '�') {
+                count++;
+            }
+        }
+        return count;
     }
 }

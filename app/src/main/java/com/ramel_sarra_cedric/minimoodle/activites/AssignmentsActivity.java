@@ -45,6 +45,9 @@ public class AssignmentsActivity extends BaseMoodleActivity {
                 JSONArray coursesJson = MoodleDao.getArray(this, "courses");
                 JSONArray assignmentsJson = MoodleDao.getArray(this, "assignments");
                 JSONObject userJson = MoodleDao.findById(usersJson, userId);
+                if (userJson == null) {
+                    throw new IllegalStateException("Utilisateur introuvable");
+                }
                 User user = User.fromJson(userJson);
 
                 courses.clear();
