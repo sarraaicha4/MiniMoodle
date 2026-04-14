@@ -1,5 +1,6 @@
 package com.ramel_sarra_cedric.minimoodle.activites;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,8 +41,10 @@ public class ProfileActivity extends BaseMoodleActivity {
         passwordInput = findViewById(R.id.profilePasswordInput);
         photoInput = findViewById(R.id.profilePhotoInput);
         Button saveBtn = findViewById(R.id.saveProfileBtn);
+        Button logoutBtn = findViewById(R.id.logoutBtn);
 
-saveBtn.setOnClickListener(view -> saveProfile());
+        saveBtn.setOnClickListener(view -> saveProfile());
+        logoutBtn.setOnClickListener(view -> logout());
         loadProfile();
     }
 
@@ -91,5 +94,11 @@ saveBtn.setOnClickListener(view -> saveProfile());
                 runOnUiThread(() -> showMessage("JSON Server requis pour enregistrer."));
             }
         }).start();
+    }
+
+    private void logout() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
