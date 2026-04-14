@@ -12,6 +12,16 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "minimoodle_local.db";
     private static final int DATABASE_VERSION = 1;
 
+    public static class QuizResult {
+        public final int score;
+        public final int total;
+
+        public QuizResult(int score, int total) {
+            this.score = score;
+            this.total = total;
+        }
+    }
+
     public LocalDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -117,5 +127,27 @@ public class LocalDatabaseHelper extends SQLiteOpenHelper {
         values.put("total", total);
         values.put("completed_at", System.currentTimeMillis());
         getWritableDatabase().insert("quiz_results", null, values);
+    }
+
+    public QuizResult getLatestQuizResult(String userId, String quizId) {
+        Cursor cursor = getReadableDatabase().query(
+                "quiz_results",
+                new String[]{"score", "total"},
+                "user_id = ? AND quiz_id = ?",
+                new String[]{userId, quizId},
+                null,
+                null,
+                "completed_at DESC",
+                "1"
+        );
+
+        try {
+            if (cursor.moveToFirst()) {
+                return new QuizResult(cursor.getInt(0), cursor.getInt(1));
+            }
+            return null;
+        } finally {
+            cursor.close();
+        }
     }
 }
