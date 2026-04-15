@@ -9,7 +9,14 @@
       "prenom": "Sara",
       "telephone": "514-123-4567",
       "photoUrl": "https://fastly.picsum.photos/id/1011/300/300.jpg",
-      "enrolledCourseIds": ["1", "2", "3", "4", "5", "6"],
+      "enrolledCourseIds": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
       "quizResults": [
         {
           "quizId": "1",
@@ -28,7 +35,11 @@
       "prenom": "Cédric",
       "telephone": "819-469-5246",
       "photoUrl": "https://fastly.picsum.photos/id/42/300/300.jpg",
-      "enrolledCourseIds": ["1", "2", "3"],
+      "enrolledCourseIds": [
+        "1",
+        "2",
+        "3"
+      ],
       "quizResults": [],
       "completedAssignmentIds": []
     },
@@ -41,8 +52,72 @@
       "prenom": "Mylène",
       "telephone": "514-987-6543",
       "photoUrl": "",
-      "enrolledCourseIds": ["2", "4"],
+      "enrolledCourseIds": [
+        "2",
+        "4"
+      ],
       "quizResults": [],
+      "completedAssignmentIds": []
+    },
+    {
+      "id": "C1biE4jW4Pg",
+      "username": "Jean",
+      "email": "utilisateur@etsmtl.ca",
+      "password": "12345",
+      "nom": "Dupont",
+      "prenom": "Jean",
+      "telephone": "514-555-3332",
+      "photoUrl": "https://unsplash.com/s/photos/instagram-profile",
+      "enrolledCourseIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "quizResults": [
+        {
+          "quizId": "1",
+          "score": 1,
+          "total": 1
+        },
+        {
+          "quizId": "3",
+          "score": 0,
+          "total": 1
+        },
+        {
+          "quizId": "4",
+          "score": 0,
+          "total": 1
+        }
+      ],
+      "completedAssignmentIds": []
+    },
+    {
+      "id": "6AODyc_LFJ4",
+      "username": "Jean",
+      "email": "utilisateur1@etsmtl.ca",
+      "password": "1234",
+      "nom": "Dupon",
+      "prenom": "Jean",
+      "telephone": "514-514-5144",
+      "photoUrl": "https://unsplash.com/s/photos/instagram-profile",
+      "enrolledCourseIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "quizResults": [
+        {
+          "quizId": "4",
+          "score": 1,
+          "total": 1
+        },
+        {
+          "quizId": "4",
+          "score": 0,
+          "total": 1
+        }
+      ],
       "completedAssignmentIds": []
     }
   ],
@@ -198,35 +273,54 @@
         {
           "id": "1",
           "question": "Android Studio est un...",
-          "options": ["IDE", "SGBD", "Système d'exploitation"],
+          "options": [
+            "IDE",
+            "SGBD",
+            "Système d'exploitation"
+          ],
           "correctOption": 0,
           "explanation": "Android Studio est l'environnement de développement utilisé pour coder et tester l'app."
         },
         {
           "id": "2",
           "question": "Dans le projet, un fichier XML de layout sert surtout à...",
-          "options": ["Décrire l'interface d'un écran", "Stocker les mots de passe", "Lancer l'émulateur"],
+          "options": [
+            "Décrire l'interface d'un écran",
+            "Stocker les mots de passe",
+            "Lancer l'émulateur"
+          ],
           "correctOption": 0,
           "explanation": "Les layouts XML définissent la structure visuelle des écrans Android."
         },
         {
           "id": "3",
           "question": "Le dossier res/drawable contient généralement...",
-          "options": ["Des images, icônes et fonds", "Les utilisateurs JSON", "Les classes Java"],
+          "options": [
+            "Des images, icônes et fonds",
+            "Les utilisateurs JSON",
+            "Les classes Java"
+          ],
           "correctOption": 0,
           "explanation": "Les ressources graphiques sont placées dans drawable."
         },
         {
           "id": "4",
           "question": "Vrai ou faux: une Activity représente souvent un écran de l'application.",
-          "options": ["Vrai", "Faux"],
+          "options": [
+            "Vrai",
+            "Faux"
+          ],
           "correctOption": 0,
           "explanation": "Dans cette app, chaque page principale est reliée à une Activity."
         },
         {
           "id": "5",
           "question": "SQLite sert dans ce projet à...",
-          "options": ["Conserver des données locales", "Créer les icônes", "Remplacer Android Studio"],
+          "options": [
+            "Conserver des données locales",
+            "Créer les icônes",
+            "Remplacer Android Studio"
+          ],
           "correctOption": 0,
           "explanation": "SQLite garde localement des informations comme les résultats de quiz."
         }
@@ -242,35 +336,54 @@
         {
           "id": "6",
           "question": "RecyclerView sert principalement à afficher...",
-          "options": ["Des listes", "Des fichiers audio", "Des permissions"],
+          "options": [
+            "Des listes",
+            "Des fichiers audio",
+            "Des permissions"
+          ],
           "correctOption": 0,
           "explanation": "RecyclerView est utilisé pour afficher efficacement des listes d'éléments."
         },
         {
           "id": "7",
           "question": "Un Intent Android sert à...",
-          "options": ["Naviguer vers une autre Activity", "Dessiner un bouton", "Compresser le JSON"],
+          "options": [
+            "Naviguer vers une autre Activity",
+            "Dessiner un bouton",
+            "Compresser le JSON"
+          ],
           "correctOption": 0,
           "explanation": "On utilise un Intent pour ouvrir une autre Activity et transmettre des données."
         },
         {
           "id": "8",
           "question": "Vrai ou faux: JSON Server peut fournir les données de l'application via une API locale.",
-          "options": ["Vrai", "Faux"],
+          "options": [
+            "Vrai",
+            "Faux"
+          ],
           "correctOption": 0,
           "explanation": "Le PDF demande un serveur JSON local pour les utilisateurs, cours, travaux et quiz."
         },
         {
           "id": "9",
           "question": "Un bon message d'erreur de connexion doit être...",
-          "options": ["Clair et compréhensible", "Vide", "Toujours en anglais technique"],
+          "options": [
+            "Clair et compréhensible",
+            "Vide",
+            "Toujours en anglais technique"
+          ],
           "correctOption": 0,
           "explanation": "L'UX demande des messages explicites pour aider l'utilisateur."
         },
         {
           "id": "10",
           "question": "Le package de base doit inclure...",
-          "options": ["Les noms des membres de l'équipe", "Le nom de l'émulateur", "Le mot de passe de l'étudiant"],
+          "options": [
+            "Les noms des membres de l'équipe",
+            "Le nom de l'émulateur",
+            "Le mot de passe de l'étudiant"
+          ],
           "correctOption": 0,
           "explanation": "Le PDF demande un package unique avec les noms des membres séparés par des underscores."
         }
@@ -286,28 +399,43 @@
         {
           "id": "11",
           "question": "Une Activity représente...",
-          "options": ["Un écran", "Une base de données", "Un serveur"],
+          "options": [
+            "Un écran",
+            "Une base de données",
+            "Un serveur"
+          ],
           "correctOption": 0,
           "explanation": "Une Activity correspond souvent à une page ou un écran de l'app."
         },
         {
           "id": "12",
           "question": "Vrai ou faux: une app mobile doit être facile à consulter sur téléphone.",
-          "options": ["Vrai", "Faux"],
+          "options": [
+            "Vrai",
+            "Faux"
+          ],
           "correctOption": 0,
           "explanation": "Le projet insiste sur une interface mobile claire et ergonomique."
         },
         {
           "id": "13",
           "question": "La barre de navigation du bas sert à...",
-          "options": ["Passer rapidement entre les pages principales", "Modifier le JSON automatiquement", "Compiler Gradle"],
+          "options": [
+            "Passer rapidement entre les pages principales",
+            "Modifier le JSON automatiquement",
+            "Compiler Gradle"
+          ],
           "correctOption": 0,
           "explanation": "Elle garde la navigation cohérente entre dashboard, quiz, travaux, cours et compte."
         },
         {
           "id": "14",
           "question": "Une donnée conservée hors ligne peut être stockée dans...",
-          "options": ["SQLite", "Le fichier themes.xml", "Le bouton de connexion"],
+          "options": [
+            "SQLite",
+            "Le fichier themes.xml",
+            "Le bouton de connexion"
+          ],
           "correctOption": 0,
           "explanation": "Le PDF recommande SQLite pour le cache et des informations utiles hors ligne."
         }
@@ -323,28 +451,43 @@
         {
           "id": "15",
           "question": "JSON Server fournit une API...",
-          "options": ["REST locale", "Bluetooth", "Graphique seulement"],
+          "options": [
+            "REST locale",
+            "Bluetooth",
+            "Graphique seulement"
+          ],
           "correctOption": 0,
           "explanation": "JSON Server expose les tableaux du fichier moodle.json comme des ressources REST."
         },
         {
           "id": "16",
           "question": "Vrai ou faux: le fichier moodle.json peut être enrichi si les changements restent cohérents.",
-          "options": ["Vrai", "Faux"],
+          "options": [
+            "Vrai",
+            "Faux"
+          ],
           "correctOption": 0,
           "explanation": "L'énoncé permet d'ajouter des champs si l'application en a besoin."
         },
         {
           "id": "17",
           "question": "Un résultat de quiz doit au minimum contenir...",
-          "options": ["Un score", "Une image obligatoire", "Un fichier PDF"],
+          "options": [
+            "Un score",
+            "Une image obligatoire",
+            "Un fichier PDF"
+          ],
           "correctOption": 0,
           "explanation": "Le PDF demande l'affichage d'un résultat ou score après validation."
         },
         {
           "id": "18",
           "question": "Quel type de question est recommandé dans le PDF?",
-          "options": ["Choix multiple ou vrai/faux", "Rédaction de 10 pages", "Question audio seulement"],
+          "options": [
+            "Choix multiple ou vrai/faux",
+            "Rédaction de 10 pages",
+            "Question audio seulement"
+          ],
           "correctOption": 0,
           "explanation": "Les types recommandés sont QCM et vrai/faux."
         }
@@ -360,21 +503,32 @@
         {
           "id": "19",
           "question": "HTML signifie...",
-          "options": ["HyperText Markup Language", "High Tool Mobile Language", "Home Text Module"],
+          "options": [
+            "HyperText Markup Language",
+            "High Tool Mobile Language",
+            "Home Text Module"
+          ],
           "correctOption": 0,
           "explanation": "HTML est le langage de balisage utilisé pour structurer une page Web."
         },
         {
           "id": "20",
           "question": "Vrai ou faux: une balise HTML peut contenir du texte visible par l'utilisateur.",
-          "options": ["Vrai", "Faux"],
+          "options": [
+            "Vrai",
+            "Faux"
+          ],
           "correctOption": 0,
           "explanation": "Plusieurs balises contiennent du contenu affiché dans la page."
         },
         {
           "id": "21",
           "question": "CSS sert principalement à...",
-          "options": ["Styliser une page", "Créer une base SQLite", "Installer l'émulateur"],
+          "options": [
+            "Styliser une page",
+            "Créer une base SQLite",
+            "Installer l'émulateur"
+          ],
           "correctOption": 0,
           "explanation": "CSS gère l'apparence: couleurs, tailles, espacements et mise en page."
         }
@@ -390,21 +544,32 @@
         {
           "id": "22",
           "question": "Une classe sert à...",
-          "options": ["Définir un modèle d'objet", "Lancer un serveur", "Compresser une image"],
+          "options": [
+            "Définir un modèle d'objet",
+            "Lancer un serveur",
+            "Compresser une image"
+          ],
           "correctOption": 0,
           "explanation": "Une classe décrit les attributs et comportements d'un type d'objet."
         },
         {
           "id": "23",
           "question": "Vrai ou faux: un objet est une instance d'une classe.",
-          "options": ["Vrai", "Faux"],
+          "options": [
+            "Vrai",
+            "Faux"
+          ],
           "correctOption": 0,
           "explanation": "On crée des objets à partir du modèle défini par une classe."
         },
         {
           "id": "24",
           "question": "L'encapsulation vise surtout à...",
-          "options": ["Protéger les données internes d'un objet", "Changer la couleur d'une icône", "Supprimer les méthodes"],
+          "options": [
+            "Protéger les données internes d'un objet",
+            "Changer la couleur d'une icône",
+            "Supprimer les méthodes"
+          ],
           "correctOption": 0,
           "explanation": "L'encapsulation limite l'accès direct aux données et passe par des méthodes."
         }
@@ -432,7 +597,7 @@
       "description": "Navigation entre activités et lecture du JSON.",
       "dueDate": "2026-04-11",
       "instructions": "TP évalué 2 H2026 - v4.pdf",
-      "status": "En retard",
+      "status": "Remis",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
@@ -490,5 +655,6 @@
       "totalPoints": 20,
       "type": "file"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

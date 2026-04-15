@@ -3,69 +3,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="92dp"
-    android:layout_marginBottom="13dp"
+    android:layout_height="100dp"
     android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingStart="14dp"
-    android:paddingEnd="10dp">
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/card_green" />
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="horizontal"
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginTop="15dp"
-            android:background="@color/card_green" />
+        android:paddingEnd="10dp">
 
-        <TextView
-            android:id="@+id/courseTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textColor="@color/text_dark"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="Algorithmes et structures de données" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/courseCode"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/text_dark"
-            android:textSize="12sp"
-            tools:text="# LOG2810" />
+            <TextView
+                android:id="@+id/courseTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_dark"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Algorithmes et structures de données" />
 
-        <TextView
-            android:id="@+id/courseTeacher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="@color/text_dark"
-            android:textSize="11sp"
-            tools:text="Enseignant: Marie Tremblay" />
+            <TextView
+                android:id="@+id/courseCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/text_dark"
+                android:textSize="12sp"
+                tools:text="# LOG2810" />
 
-        <TextView
-            android:id="@+id/courseSession"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/text_dark"
-            android:textSize="11sp"
-            tools:text="Session: A2024" />
+            <TextView
+                android:id="@+id/courseTeacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/text_dark"
+                android:textSize="11sp"
+                tools:text="Enseignant: Marie Tremblay" />
+
+            <TextView
+                android:id="@+id/courseSession"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_dark"
+                android:textSize="11sp"
+                tools:text="Session: A2024" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/open_course"
+            android:src="@drawable/ic_chevron_right" />
     </LinearLayout>
-
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:contentDescription="@string/open_course"
-        android:src="@drawable/ic_chevron_right" />
 </LinearLayout>
