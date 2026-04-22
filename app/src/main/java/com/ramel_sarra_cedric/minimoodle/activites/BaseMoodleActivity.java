@@ -25,6 +25,7 @@ import java.net.URL;
 public class BaseMoodleActivity extends AppCompatActivity {
     public static final String EXTRA_USER_ID = "userId";
     public static final String EXTRA_COURSE_ID = "courseId";
+    public static final String EXTRA_TAB = "tab";
 
     protected String userId = "1";
 

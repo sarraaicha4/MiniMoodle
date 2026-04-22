@@ -1,17 +1,13 @@
 package com.ramel_sarra_cedric.minimoodle.activites;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AlertDialog;
 
 import com.ramel_sarra_cedric.minimoodle.R;
 import com.ramel_sarra_cedric.minimoodle.dao.LocalDatabaseHelper;
@@ -132,7 +128,7 @@ public class QuizActivity extends BaseMoodleActivity {
 
         for (Quiz quiz : quizzes) {
             View card = quizCard(quiz);
-            card.setOnClickListener(view -> showQuizDialog(quiz));
+            card.setOnClickListener(view -> openQuiz(quiz));
             quizzesContainer.addView(card);
         }
     }
@@ -196,22 +192,19 @@ public class QuizActivity extends BaseMoodleActivity {
         statusParams.topMargin = dp(8);
         card.addView(statusText, statusParams);
 
-        // Bouton seulement si pas complété
-        if (!completed) {
-            Button actionBtn = new Button(this);
-            actionBtn.setText("Commencer le quiz");
-            actionBtn.setTextColor(getColor(R.color.white));
-            actionBtn.setTextSize(13);
-            actionBtn.setTypeface(null, Typeface.BOLD);
-            actionBtn.setAllCaps(false);
-            actionBtn.setBackgroundResource(R.drawable.bg_button_orange);
-            actionBtn.setIncludeFontPadding(false);
-            LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, dp(30));
-            btnParams.gravity = Gravity.CENTER_HORIZONTAL;
-            btnParams.topMargin = dp(2);
-            card.addView(actionBtn, btnParams);
-            actionBtn.setOnClickListener(v -> showQuizDialog(quiz));
-        }
+        Button actionBtn = new Button(this);
+        actionBtn.setText(completed ? "Consulter le quiz" : "Commencer le quiz");
+        actionBtn.setTextColor(getColor(R.color.white));
+        actionBtn.setTextSize(13);
+        actionBtn.setTypeface(null, Typeface.BOLD);
+        actionBtn.setAllCaps(false);
+        actionBtn.setBackgroundResource(R.drawable.bg_button_orange);
+        actionBtn.setIncludeFontPadding(false);
+        LinearLayout.LayoutParams btnParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, dp(30));
+        btnParams.gravity = Gravity.CENTER_HORIZONTAL;
+        btnParams.topMargin = dp(2);
+        card.addView(actionBtn, btnParams);
+        actionBtn.setOnClickListener(v -> openQuiz(quiz));
 
         LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         cardParams.setMargins(0, 0, 0, dp(16));
@@ -226,125 +219,11 @@ public class QuizActivity extends BaseMoodleActivity {
         return "Cours";
     }
 
-    private void showQuizDialog(Quiz quiz) {
-        if (quiz.questions.length() == 0) {
-            showMessage("Ce quiz n'a pas de question.");
-            return;
-        }
-
-        List<JSONObject> visibleQuestions = new ArrayList<>();
-        List<RadioGroup> answerGroups = new ArrayList<>();
-        LinearLayout form = new LinearLayout(this);
-        form.setOrientation(LinearLayout.VERTICAL);
-        form.setPadding(dp(18), dp(12), dp(18), dp(8));
-
-        TextView instructions = new TextView(this);
-        instructions.setText("Cours: " + courseCodeFor(quiz.courseId)
-                + "\nQuestions: " + quiz.questionCount()
-                + "\n\nRéponds à toutes les questions, puis valide pour voir ton score.");
-        instructions.setTextColor(getColor(R.color.text_dark));
-        instructions.setTextSize(14);
-        instructions.setLineSpacing(3, 1);
-        form.addView(instructions);
-
-        for (int i = 0; i < quiz.questions.length(); i++) {
-            JSONObject question = quiz.questions.optJSONObject(i);
-            JSONArray options = question == null ? null : question.optJSONArray("options");
-            if (question == null || options == null || options.length() == 0) continue;
-
-            visibleQuestions.add(question);
-            TextView questionTitle = new TextView(this);
-            questionTitle.setText("\nQuestion " + visibleQuestions.size() + "\n" + question.optString("question"));
-            questionTitle.setTextColor(getColor(R.color.text_dark));
-            questionTitle.setTextSize(14);
-            questionTitle.setTypeface(null, Typeface.BOLD);
-            questionTitle.setLineSpacing(3, 1);
-            form.addView(questionTitle);
-
-            RadioGroup group = new RadioGroup(this);
-            group.setOrientation(RadioGroup.VERTICAL);
-            group.setPadding(0, dp(4), 0, dp(4));
-
-            for (int j = 0; j < options.length(); j++) {
-                RadioButton btn = new RadioButton(this);
-                btn.setId(View.generateViewId());
-                btn.setTag(j);
-                btn.setText(options.optString(j));
-                btn.setTextColor(getColor(R.color.text_dark));
-                btn.setTextSize(13);
-                group.addView(btn);
-            }
-
-            answerGroups.add(group);
-            form.addView(group);
-        }
-
-        if (answerGroups.isEmpty()) {
-            showMessage("Ce quiz n'a pas de questions utilisables.");
-            return;
-        }
-
-        ScrollView scrollView = new ScrollView(this);
-        scrollView.addView(form);
-
-        AlertDialog quizDialog = new AlertDialog.Builder(this)
-                .setTitle(quiz.title)
-                .setView(scrollView)
-                .setPositiveButton("Valider", null)
-                .setNegativeButton("Fermer", null)
-                .create();
-
-        quizDialog.setOnShowListener(dialog -> {
-            Button validateButton = quizDialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE);
-            validateButton.setOnClickListener(view -> submitQuiz(quiz, visibleQuestions, answerGroups, quizDialog));
-        });
-        quizDialog.show();
-    }
-
-    private void submitQuiz(Quiz quiz, List<JSONObject> questions, List<RadioGroup> answerGroups, AlertDialog quizDialog) {
-        for (RadioGroup group : answerGroups) {
-            if (group.getCheckedRadioButtonId() == -1) {
-                showMessage("Réponds à toutes les questions avant de valider.");
-                return;
-            }
-        }
-
-        int score = 0;
-        StringBuilder corrections = new StringBuilder();
-
-        for (int i = 0; i < questions.size(); i++) {
-            JSONObject question = questions.get(i);
-            JSONArray options = question.optJSONArray("options");
-            RadioGroup group = answerGroups.get(i);
-            RadioButton selectedButton = group.findViewById(group.getCheckedRadioButtonId());
-            int selectedIndex = (int) selectedButton.getTag();
-            int correctIndex = question.optInt("correctOption", -1);
-            boolean correct = selectedIndex == correctIndex;
-
-            if (correct) score++;
-
-            corrections.append(i + 1).append(". ")
-                    .append(correct ? "Correct" : "Incorrect")
-                    .append(" - réponse: ")
-                    .append(options != null ? options.optString(correctIndex, "?") : "?");
-
-            String explanation = question.optString("explanation");
-            if (!explanation.isEmpty()) corrections.append("\n   ").append(explanation);
-            corrections.append("\n\n");
-        }
-
-        localDb.saveQuizResult(userId, quiz.id, score, questions.size());
-        quizScores.put(quiz.id, new QuizScore(score, questions.size()));
-        quiz.status = "Terminé";
-        quizDialog.dismiss();
-        renderQuizzes();
-
-        int percent = questions.size() == 0 ? 0 : Math.round((score * 100f) / questions.size());
-        new AlertDialog.Builder(this)
-                .setTitle("Résultat - " + quiz.title)
-                .setMessage("Score: " + score + "/" + questions.size() + " (" + percent + "%)\n\n" + corrections)
-                .setPositiveButton("OK", null)
-                .show();
+    private void openQuiz(Quiz quiz) {
+        Intent intent = new Intent(this, QuizDetailActivity.class);
+        intent.putExtra(EXTRA_USER_ID, userId);
+        intent.putExtra(QuizDetailActivity.EXTRA_QUIZ_ID, quiz.id);
+        startActivity(intent);
     }
 
     private int dp(int value) {

@@ -24,7 +24,8 @@ public class Assignment {
         assignment.dueDate = json.optString("dueDate");
         assignment.instructions = json.optString("instructions");
         assignment.status = json.optString("status", "À faire");
-        assignment.grade = json.optString("grade", "");
+        String gradeRaw = json.isNull("grade") ? "" : json.optString("grade", "");
+        assignment.grade = "null".equals(gradeRaw) ? "" : gradeRaw;
         assignment.comment = json.optString("comment", "");
         assignment.totalPoints = json.optInt("totalPoints", 20);
         assignment.type = json.optString("type", "text");

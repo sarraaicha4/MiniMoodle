@@ -45,18 +45,18 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/navAssignments"
+            android:id="@+id/navCourses"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/nav_quizzes"
+            android:contentDescription="@string/nav_courses"
             android:paddingTop="10dp"
             android:paddingBottom="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_nav_quiz" />
+            android:src="@drawable/ic_nav_book" />
 
         <View
-            android:id="@+id/navAssignmentsDot"
+            android:id="@+id/navCoursesDot"
             android:layout_width="6dp"
             android:layout_height="6dp"
             android:layout_marginBottom="1dp"
@@ -72,18 +72,18 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/navCourses"
+            android:id="@+id/navAssignments"
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/nav_courses"
+            android:contentDescription="@string/nav_quizzes"
             android:paddingTop="10dp"
             android:paddingBottom="5dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_nav_book" />
+            android:src="@drawable/ic_nav_quiz" />
 
         <View
-            android:id="@+id/navCoursesDot"
+            android:id="@+id/navAssignmentsDot"
             android:layout_width="6dp"
             android:layout_height="6dp"
             android:layout_marginBottom="1dp"

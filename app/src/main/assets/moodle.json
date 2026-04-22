@@ -119,6 +119,57 @@
         }
       ],
       "completedAssignmentIds": []
+    },
+    {
+      "id": "QI9Uq4BZkQw",
+      "username": "Cedric",
+      "email": "cedd2004@gmail.com",
+      "password": "1234",
+      "nom": "Denommee",
+      "prenom": "Cedric",
+      "telephone": "514-555-5555",
+      "photoUrl": "https://png.pngtree.com/thumb_back/fh260/background/20250115/pngtree-nature-dp-profile-picture-image_16870994.jpg",
+      "enrolledCourseIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "quizResults": [
+        {
+          "quizId": "5",
+          "score": 1,
+          "total": 3
+        }
+      ],
+      "completedAssignmentIds": []
+    },
+    {
+      "id": "JmXPcoceyEE",
+      "username": "Cedri",
+      "email": "cedd2005@gmail.com",
+      "password": "123456",
+      "nom": "Denommee",
+      "prenom": "Cedri",
+      "telephone": "514-555-5555",
+      "photoUrl": "https://png.pngtree.com/thumb_back/fh260/background/20250115/pngtree-nature-dp-profile-picture-image_16870994.jpg",
+      "enrolledCourseIds": [
+        "1",
+        "2",
+        "3"
+      ],
+      "quizResults": [
+        {
+          "quizId": "1",
+          "score": 3,
+          "total": 5
+        },
+        {
+          "quizId": "2",
+          "score": 3,
+          "total": 5
+        }
+      ],
+      "completedAssignmentIds": []
     }
   ],
   "courses": [
@@ -610,7 +661,7 @@
       "description": "Mini Moodle complet avec compte, cours, travaux et quiz.",
       "dueDate": "2026-04-19",
       "instructions": "Projet de session H2026 - v3.pdf",
-      "status": "À faire",
+      "status": "Remis",
       "grade": null,
       "comment": null,
       "totalPoints": 40,
@@ -623,7 +674,7 @@
       "description": "Construire une page web responsive.",
       "dueDate": "2026-04-07",
       "instructions": "Style et grilles CSS",
-      "status": "À faire",
+      "status": "Remis",
       "grade": null,
       "comment": null,
       "totalPoints": 20,
